@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sthiti - Vedic Astrology Compatibility Reports</title>
+    <meta name="description" content="Get personalized Vedic astrology compatibility reports. Discover your relationship potential through ancient wisdom and modern insights.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, 
+                #0a0612 0%,
+                #1a1420 25%,
+                #2a1f2f 50%,
+                #3a2f40 75%,
+                #4a3f50 100%
+            );
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Celestial Background */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Animated Stars */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star.bright {
+            width: 3px;
+            height: 3px;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.8; transform: scale(1.1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Shooting Stars */
+        .shooting-star {
+            position: absolute;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shoot 4s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% { transform: translate(0, 0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translate(-200px, 200px); opacity: 0; }
+        }
+
+        /* Moon */
+        .moon {
+            position: fixed;
+            top: 80px;
+            right: 100px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff7dd, #ffd700);
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.5),
+                0 0 80px rgba(255, 215, 0, 0.3),
+                inset -20px -20px 40px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        /* Content Container */
+        .content {
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .logo {
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffd700, #fff7dd, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            letter-spacing: 3px;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #fff7dd;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 1em;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(53, 42, 57, 0.3);
+            border-radius: 20px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #fff7dd;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: #352a39;
+            font-size: 1.3em;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 
+                0 8px 25px rgba(255, 215, 0, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 12px 35px rgba(255, 215, 0, 0.5),
+                0 0 60px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: rgba(53, 42, 57, 0.4);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5em;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Reports Section */
+        .reports {
+            margin: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #ffd700;
+            margin-bottom: 50px;
+        }
+
+        .report-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .report-card {
+            background: linear-gradient(135deg, 
+                rgba(53, 42, 57, 0.6) 0%,
+                rgba(42, 31, 47, 0.6) 100%
+            );
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .report-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        .report-card h3 {
+            font-size: 2em;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .report-price {
+            font-size: 2.5em;
+            color: #fff7dd;
+            margin: 20px 0;
+        }
+
+        .report-price .currency {
+            font-size: 0.6em;
+        }
+
+        .report-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .report-features li {
+            padding: 10px 0;
+            color: #ccc;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .report-features li:before {
+            content: "✨ ";
+            color: #ffd700;
+        }
+
+        .order-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: #352a39;
+            font-size: 1.1em;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .order-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Bundle Offer */
+        .bundle-card {
+            background: linear-gradient(135deg, 
+                rgba(255, 215, 0, 0.2) 0%,
+                rgba(255, 165, 0, 0.2) 100%
+            );
+            border: 3px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bundle-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #ff4444;
+            color: white;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: 700;
+            font-size: 0.9em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            color: #999;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5em;
+            }
+
+            .hero h2 {
+                font-size: 1.8em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            .cta-button {
+                padding: 15px 40px;
+                font-size: 1.1em;
+            }
+
+            .report-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Celestial Background -->
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="moon"></div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Header -->
+        <header>
+            <h1 class="logo">✨ STHITI ✨</h1>
+            <p class="tagline">Vedic Astrology Compatibility Reports</p>
+            <p class="subtitle">Discover the cosmic connection between souls through ancient Vedic wisdom and modern insights</p>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Unlock the Secrets of Your Relationship</h2>
+            <p>Experience personalized compatibility analysis based on authentic Vedic astrology principles. Our detailed reports combine traditional astrological wisdom with AI-powered insights to help you understand your relationship dynamics.</p>
+            <a href="https://order.sthiti.online" class="cta-button">Get Your Report Now</a>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔮</div>
+                <h3>Authentic Vedic Analysis</h3>
+                <p>Based on traditional birth chart calculations using precise astronomical data</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💫</div>
+                <h3>AI-Enhanced Insights</h3>
+                <p>Modern AI technology interprets ancient wisdom for personalized guidance</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Comprehensive Reports</h3>
+                <p>Detailed analysis covering personality, compatibility, and relationship dynamics</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📧</div>
+                <h3>Instant Delivery</h3>
+                <p>Receive your beautifully formatted PDF report within minutes via email</p>
+            </div>
+        </section>
+
+        <!-- Reports -->
+        <section class="reports">
+            <h2 class="section-title">Choose Your Report</h2>
+            
+            <div class="report-cards">
+                <!-- Marriage Compatibility -->
+                <div class="report-card">
+                    <h3>💑 Marriage Compatibility</h3>
+                    <div class="report-price">
+                        <span class="currency">₹</span>399
+                    </div>
+                    <ul class="report-features">
+                        <li>Complete birth chart analysis for both partners</li>
+                        <li>Kuta/Guna matching (36-point system)</li>
+                        <li>Personality trait compatibility</li>
+                        <li>Emotional & intellectual bonding analysis</li>
+                        <li>Physical compatibility assessment</li>
+                        <li>Manglik dosha analysis</li>
+                        <li>AI-powered relationship insights</li>
+                        <li>Professional PDF report</li>
+                    </ul>
+                    <a href="https://order.sthiti.online?report=marriage" class="order-button">Order Now</a>
+                </div>
+
+                <!-- Teen/Dating Compatibility -->
+                <div class="report-card">
+                    <h3>💕 Relationship Compatibility</h3>
+                    <div class="report-price">
+                        <span class="currency">₹</span>399
+                    </div>
+                    <ul class="report-features">
+                        <li>Numerology-based compatibility</li>
+                        <li>Mulank & Bhagyank analysis</li>
+                        <li>Lo Shu Grid compatibility</li>
+                        <li>Personality matching insights</li>
+                        <li>Communication style analysis</li>
+                        <li>Relationship strengths & challenges</li>
+                        <li>Practical relationship advice</li>
+                        <li>Professional PDF report</li>
+                    </ul>
+                    <a href="https://order.sthiti.online?report=teen" class="order-button">Order Now</a>
+                </div>
+
+                <!-- Bundle Offer -->
+                <div class="report-card bundle-card">
+                    <div class="bundle-badge">SAVE ₹299</div>
+                    <h3>🌟 Complete Package</h3>
+                    <div class="report-price">
+                        <span class="currency">₹</span>499
+                        <div style="font-size: 0.4em; text-decoration: line-through; color: #999;">₹798</div>
+                    </div>
+                    <ul class="report-features">
+                        <li>Both Marriage & Relationship reports</li>
+                        <li>Complete Vedic astrology analysis</li>
+                        <li>Full numerology compatibility</li>
+                        <li>Comprehensive personality insights</li>
+                        <li>All astrological factors covered</li>
+                        <li>Dual perspective analysis</li>
+                        <li>Maximum value & savings</li>
+                        <li>Two professional PDF reports</li>
+                    </ul>
+                    <a href="https://order.sthiti.online?report=bundle" class="order-button">Get Bundle Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="hero" style="margin-top: 80px;">
+            <h2>How It Works</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">1️⃣</div>
+                    <h3>Enter Birth Details</h3>
+                    <p>Provide birth date, time, and location for both partners</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">2️⃣</div>
+                    <h3>Secure Payment</h3>
+                    <p>Complete your order with safe and secure payment processing</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">3️⃣</div>
+                    <h3>Receive Report</h3>
+                    <p>Get your detailed compatibility report delivered to your email</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sthiti. All rights reserved.</p>
+        <p>
+            <a href="mailto:support@sthiti.online">Contact Support</a> | 
+            <a href="#privacy">Privacy Policy</a> | 
+            <a href="#terms">Terms of Service</a>
+        </p>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            ⚠️ Disclaimer: Astrological reports are for entertainment and informational purposes only. 
+            Please consult qualified professionals for important life decisions.
+        </p>
+    </footer>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('starsContainer');
+        
+        // Create 150 stars
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = Math.random() > 0.7 ? 'star bright' : 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Create 5 shooting stars
+        for (let i = 0; i < 5; i++) {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.left = Math.random() * 100 + '%';
+            shootingStar.style.top = Math.random() * 50 + '%';
+            shootingStar.style.animationDelay = (i * 3) + 's';
+            starsContainer.appendChild(shootingStar);
+        }
+
+        // Handle URL parameters for direct ordering
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const report = params.get('report');
+            
+            if (report) {
+                // If report parameter exists, redirect to order page
+                window.location.href = `https://order.sthiti.online?report=${report}`;
+            }
+        });
+    </script>
+</body>
+</html>
