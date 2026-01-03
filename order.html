@@ -22,7 +22,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Simplified celestial background for mobile */
         body::before {
             content: '';
             position: fixed;
@@ -52,7 +51,6 @@
             50% { opacity: 0.8; }
         }
 
-        /* Container - MOBILE FIRST */
         .container {
             max-width: 100%;
             margin: 0 auto;
@@ -64,7 +62,6 @@
             z-index: 10;
         }
 
-        /* Header - COMPACT ON MOBILE */
         .header {
             background: linear-gradient(135deg, #fff7dd 0%, #ffe8b3 100%);
             color: #352a39;
@@ -83,7 +80,6 @@
             opacity: 0.85;
         }
 
-        /* Progress Bar - MOBILE OPTIMIZED */
         .progress-container {
             padding: 20px 15px 15px;
             background: white;
@@ -163,7 +159,6 @@
             font-weight: 600;
         }
 
-        /* Form Container - MOBILE SPACING */
         .form-container {
             padding: 20px 15px 25px;
         }
@@ -198,7 +193,6 @@
             border-bottom: 2px solid #f0f0f0;
         }
 
-        /* Form Groups - MOBILE OPTIMIZED */
         .form-group {
             margin-bottom: 18px;
         }
@@ -215,13 +209,12 @@
             color: #e74c3c;
         }
 
-        /* Inputs - LARGER FOR MOBILE */
         input, select {
             width: 100%;
             padding: 14px 12px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 16px; /* Prevents zoom on iOS */
+            font-size: 16px;
             transition: border-color 0.3s;
             -webkit-appearance: none;
             appearance: none;
@@ -239,7 +232,6 @@
             border-color: #352a39;
         }
 
-        /* Date/Time inputs - MOBILE FRIENDLY */
         input[type="date"],
         input[type="time"] {
             min-height: 48px;
@@ -263,13 +255,13 @@
             display: block;
         }
 
-        /* Report Cards - MOBILE STACKED */
         .report-options {
             display: grid;
             gap: 15px;
             margin-bottom: 20px;
         }
 
+        /* BUNDLE OFFER - INITIAL */
         .bundle-offer-top {
             background: linear-gradient(135deg, #fff7dd 0%, #ffe8b3 100%);
             padding: 18px 15px;
@@ -301,6 +293,166 @@
 
         .bundle-offer-top strong {
             font-size: 1.2em;
+        }
+
+        /* BUNDLE REMINDER - STEP 2 */
+        .bundle-reminder {
+            display: none;
+            background: linear-gradient(135deg, #fff7dd 0%, #ffe8b3 100%);
+            padding: 20px 15px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 25px;
+            border: 2px solid #ff8c00;
+            animation: slideDown 0.5s ease;
+        }
+
+        .bundle-reminder.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bundle-reminder h4 {
+            color: #352a39;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .bundle-reminder .savings {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff8c00;
+            margin: 10px 0;
+        }
+
+        .bundle-reminder button {
+            background: #ff8c00;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            min-height: 48px;
+        }
+
+        .bundle-reminder button:active {
+            transform: scale(0.98);
+        }
+
+        /* CELEBRATION OVERLAY */
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .celebration-overlay.show {
+            display: flex;
+            animation: fadeInOverlay 0.3s ease;
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .celebration-content {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 90%;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .celebration-emoji {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: bounce 0.8s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .celebration-content h3 {
+            color: #352a39;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .celebration-content .savings-amount {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff8c00;
+            margin: 15px 0;
+        }
+
+        .celebration-content p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .celebration-content button {
+            background: #352a39;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: confetti-fall 3s linear;
+            z-index: 10000;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .report-card {
@@ -376,7 +528,6 @@
             margin-top: 8px;
         }
 
-        /* Buttons - MOBILE TOUCH OPTIMIZED */
         .button-group {
             display: flex;
             gap: 12px;
@@ -392,7 +543,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            min-height: 52px; /* Touch target */
+            min-height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -424,7 +575,6 @@
             cursor: not-allowed;
         }
 
-        /* Price Info - STICKY ON MOBILE */
         .price-info {
             background: #fff7dd;
             padding: 18px 15px;
@@ -456,7 +606,6 @@
             line-height: 1.6;
         }
 
-        /* Helper text */
         .help-text {
             font-size: 0.85em;
             color: #666;
@@ -464,7 +613,6 @@
             line-height: 1.4;
         }
 
-        /* TABLET BREAKPOINT */
         @media (min-width: 600px) {
             body {
                 padding: 20px;
@@ -499,7 +647,6 @@
             }
         }
 
-        /* DESKTOP BREAKPOINT */
         @media (min-width: 900px) {
             .container {
                 max-width: 800px;
@@ -534,7 +681,6 @@
                 font-size: 0.85em;
             }
 
-            /* Desktop hover states */
             .btn-next:hover, .btn-submit:hover {
                 background: #4a3a4d;
                 transform: translateY(-2px);
@@ -549,7 +695,6 @@
             }
         }
 
-        /* Touch device specific */
         @media (hover: none) and (pointer: coarse) {
             .btn {
                 min-height: 54px;
@@ -560,7 +705,6 @@
             }
         }
 
-        /* Landscape mobile */
         @media (max-width: 900px) and (orientation: landscape) {
             body::before {
                 width: 60px;
@@ -580,7 +724,7 @@
     </style>
 </head>
 <body>
-    <!-- Simplified stars for mobile -->
+    <!-- Stars -->
     <div class="star" style="width: 3px; height: 3px; top: 10%; left: 10%;"></div>
     <div class="star" style="width: 2px; height: 2px; top: 15%; right: 15%; animation-delay: 0.5s;"></div>
     <div class="star" style="width: 3px; height: 3px; bottom: 20%; left: 15%; animation-delay: 1s;"></div>
@@ -588,13 +732,23 @@
     <div class="star" style="width: 3px; height: 3px; top: 30%; left: 5%; animation-delay: 2s;"></div>
     <div class="star" style="width: 2px; height: 2px; top: 50%; right: 5%; animation-delay: 2.5s;"></div>
 
+    <!-- Celebration Overlay -->
+    <div class="celebration-overlay" id="celebrationOverlay">
+        <div class="celebration-content">
+            <div class="celebration-emoji">🎉</div>
+            <h3>Amazing Choice!</h3>
+            <div class="savings-amount" id="celebrationSavings">Save ₹299</div>
+            <p>You're getting both complete reports at a special bundle price!</p>
+            <button onclick="closeCelebration()">Awesome! 🎊</button>
+        </div>
+    </div>
+
     <div class="container">
         <div class="header">
             <h1>Sthiti</h1>
             <p>Influence, Not Prediction</p>
         </div>
 
-        <!-- Progress Bar -->
         <div class="progress-container">
             <div class="progress-steps">
                 <div class="progress-line" id="progressLine"></div>
@@ -615,7 +769,7 @@
 
         <div class="form-container">
             <form id="compatibilityForm">
-                <!-- Step 1: Person 1 + Report Selection -->
+                <!-- Step 1 -->
                 <div class="form-step active" data-step="1">
                     <h2 class="section-title">Select Your Reports</h2>
                     
@@ -627,9 +781,9 @@
                         
                         <div class="bundle-offer-top">
                             <div class="bundle-badge">Special Offer!</div>
-                            <p>Get <strong>both reports</strong> for just <strong>₹499</strong></p>
-                            <p style="font-size: 0.8em; margin-top: 4px; text-decoration: line-through; opacity: 0.7;">₹798</p>
-                            <p style="font-size: 0.85em; margin-top: 4px;">Save ₹299 with the bundle!</p>
+                            <p>Get <strong>both reports</strong> for just <strong id="bundlePriceDisplay">₹499</strong></p>
+                            <p style="font-size: 0.8em; margin-top: 4px; text-decoration: line-through; opacity: 0.7;" id="originalPriceDisplay">₹798</p>
+                            <p style="font-size: 0.85em; margin-top: 4px;">Save <span id="savingsDisplay">₹299</span> with the bundle!</p>
                         </div>
 
                         <div class="report-options">
@@ -645,7 +799,7 @@
                                             <li>Ashta Koota & D9 compatibility</li>
                                             <li>Comprehensive insights</li>
                                         </ul>
-                                        <div class="report-price">₹399</div>
+                                        <div class="report-price" id="marriagePrice">₹399</div>
                                     </div>
                                 </label>
                             </div>
@@ -662,7 +816,7 @@
                                             <li>Communication dynamics</li>
                                             <li>Practical relationship advice</li>
                                         </ul>
-                                        <div class="report-price">₹399</div>
+                                        <div class="report-price" id="teenPrice">₹399</div>
                                     </div>
                                 </label>
                             </div>
@@ -726,8 +880,16 @@
                     </div>
                 </div>
 
-                <!-- Step 2: Person 2 -->
+                <!-- Step 2 -->
                 <div class="form-step" data-step="2">
+                    <!-- Bundle Reminder - Shows if only 1 report selected -->
+                    <div class="bundle-reminder" id="bundleReminder">
+                        <h4>🎁 Wait! Don't Miss This Deal</h4>
+                        <p style="color: #666; font-size: 0.95em; margin: 8px 0;" id="reminderMessage">Add the other report and save big!</p>
+                        <div class="savings">Save <span id="reminderSavings">₹299</span></div>
+                        <button type="button" onclick="addOtherReportAndCelebrate()">Yes! Add It Now 🎉</button>
+                    </div>
+
                     <h2 class="section-title">Person 2 Details</h2>
                     
                     <div class="form-group">
@@ -786,7 +948,7 @@
                     </div>
                 </div>
 
-                <!-- Step 3: Contact & Payment -->
+                <!-- Step 3 -->
                 <div class="form-step" data-step="3">
                     <h2 class="section-title">Contact & Payment</h2>
                     
@@ -820,9 +982,23 @@
     </div>
 
     <script>
+        // ==================== PRICING CONFIGURATION ====================
+        // CHANGE THESE VALUES TO UPDATE ALL PRICES DYNAMICALLY
+        const PRICING = {
+            marriage: 299,      // Marriage report price
+            teen: 119,          // Teen report price
+            bundle: 319         // Bundle price (both reports)
+        };
+
+        // Auto-calculate savings
+        const SAVINGS = (PRICING.marriage + PRICING.teen) - PRICING.bundle;
+        const ORIGINAL_PRICE = PRICING.marriage + PRICING.teen;
+
+        // ==================== STATE ====================
         let currentStep = 1;
         let selectedReports = [];
         let currentPrice = 0;
+        let hasShownCelebration = false;
 
         const cityCoordinates = {
             'hyderabad': { lat: 17.385044, lon: 78.486671, tz: 5.5 },
@@ -837,8 +1013,23 @@
         const RAZORPAY_KEY_ID = 'rzp_test_Rx9ThUZkAuZOle';
         const BACKEND_URL = 'https://api.sthiti.online';
 
+        // ==================== INITIALIZE PRICES ====================
+        function initializePrices() {
+            document.getElementById('marriagePrice').textContent = `₹${PRICING.marriage}`;
+            document.getElementById('teenPrice').textContent = `₹${PRICING.teen}`;
+            document.getElementById('bundlePriceDisplay').textContent = `₹${PRICING.bundle}`;
+            document.getElementById('originalPriceDisplay').textContent = `₹${ORIGINAL_PRICE}`;
+            document.getElementById('savingsDisplay').textContent = `₹${SAVINGS}`;
+            document.getElementById('reminderSavings').textContent = `₹${SAVINGS}`;
+            document.getElementById('celebrationSavings').textContent = `Save ₹${SAVINGS}`;
+        }
+
+        initializePrices();
+
+        // ==================== UPDATE PRICE ====================
         function updatePrice() {
             const checkboxes = document.querySelectorAll('input[name="reportType"]:checked');
+            const previousCount = selectedReports.length;
             selectedReports = Array.from(checkboxes).map(cb => cb.value);
             
             const priceDisplay = document.getElementById('displayPrice');
@@ -849,43 +1040,53 @@
                 priceDisplay.textContent = '₹0';
                 priceDetails.innerHTML = 'Please select at least one report';
             } else if (selectedReports.length === 1) {
-                currentPrice = 399;
-                priceDisplay.textContent = '₹399';
-                const reportName = selectedReports[0] === 'marriage' ? 'Marriage Compatibility' : 'Relationship Compatibility';
+                const reportType = selectedReports[0];
+                currentPrice = PRICING[reportType];
+                priceDisplay.textContent = `₹${currentPrice}`;
+                const reportName = reportType === 'marriage' ? 'Marriage Compatibility' : 'Relationship Compatibility';
                 priceDetails.innerHTML = `✓ ${reportName} Report<br>✓ Professional PDF<br>✓ Email delivery within 5 mins`;
             } else {
-                currentPrice = 499;
-                priceDisplay.textContent = '₹499';
-                priceDetails.innerHTML = '✓ Marriage Compatibility Report<br>✓ Relationship Compatibility Report<br>✓ <strong>Save ₹299!</strong>';
+                currentPrice = PRICING.bundle;
+                priceDisplay.textContent = `₹${PRICING.bundle}`;
+                priceDetails.innerHTML = `✓ Marriage Compatibility Report<br>✓ Relationship Compatibility Report<br>✓ <strong>Save ₹${SAVINGS}!</strong>`;
+                
+                // Show celebration if they just selected both (works on any step)
+                if (previousCount === 1 && selectedReports.length === 2 && !hasShownCelebration) {
+                    showCelebration();
+                    hasShownCelebration = true;
+                }
             }
         }
 
-        document.getElementById('person1_city').addEventListener('change', function() {
-            const customDiv = document.getElementById('person1_custom');
-            if (this.value === 'custom') {
-                customDiv.classList.add('active');
-                document.querySelector('[name="person1_lat"]').required = true;
-                document.querySelector('[name="person1_lon"]').required = true;
-            } else {
-                customDiv.classList.remove('active');
-                document.querySelector('[name="person1_lat"]').required = false;
-                document.querySelector('[name="person1_lon"]').required = false;
-            }
-        });
+        // ==================== CELEBRATION ====================
+        function showCelebration() {
+            const overlay = document.getElementById('celebrationOverlay');
+            overlay.classList.add('show');
+            createConfetti();
+        }
 
-        document.getElementById('person2_city').addEventListener('change', function() {
-            const customDiv = document.getElementById('person2_custom');
-            if (this.value === 'custom') {
-                customDiv.classList.add('active');
-                document.querySelector('[name="person2_lat"]').required = true;
-                document.querySelector('[name="person2_lon"]').required = true;
-            } else {
-                customDiv.classList.remove('active');
-                document.querySelector('[name="person2_lat"]').required = false;
-                document.querySelector('[name="person2_lon"]').required = false;
-            }
-        });
+        function closeCelebration() {
+            const overlay = document.getElementById('celebrationOverlay');
+            overlay.classList.remove('show');
+        }
 
+        function createConfetti() {
+            const colors = ['#ffd700', '#ff8c00', '#ff6b6b', '#4ecdc4', '#45b7d1'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // ==================== NAVIGATION ====================
         function nextStep() {
             const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
             
@@ -918,7 +1119,34 @@
                 document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
                 document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
                 updateProgressLine();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Show bundle reminder if only 1 report selected on step 2
+                if (currentStep === 2 && selectedReports.length === 1) {
+                    const reminderEl = document.getElementById('bundleReminder');
+                    const messageEl = document.getElementById('reminderMessage');
+                    
+                    // Set personalized message based on selected report
+                    if (selectedReports[0] === 'marriage') {
+                        messageEl.textContent = '💕 Add the Relationship Compatibility report to understand your dating & communication dynamics better!';
+                    } else if (selectedReports[0] === 'teen') {
+                        messageEl.textContent = '💑 If you\'re serious about your relationship, add the Marriage Compatibility report to see your future together!';
+                    }
+                    
+                    reminderEl.classList.add('show');
+                    
+                    // Scroll to top to see the reminder after a short delay
+                    setTimeout(() => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 200);
+                } else {
+                    // Hide reminder if both reports selected
+                    document.getElementById('bundleReminder').classList.remove('show');
+                }
+                
+                // Scroll to top for other transitions
+                if (currentStep !== 2 || selectedReports.length !== 1) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             }
         }
 
@@ -934,12 +1162,76 @@
             }
         }
 
+        function addOtherReportAndCelebrate() {
+            // Determine which report to add
+            const currentReport = selectedReports[0];
+            const otherReport = currentReport === 'marriage' ? 'teen' : 'marriage';
+            
+            // Check the other report's checkbox (behind the scenes)
+            const checkboxes = document.querySelectorAll('input[name="reportType"]');
+            checkboxes.forEach(cb => {
+                if (cb.value === otherReport) {
+                    cb.checked = true;
+                }
+            });
+            
+            // Update price (this will trigger the celebration)
+            updatePrice();
+            
+            // Hide the bundle reminder
+            document.getElementById('bundleReminder').classList.remove('show');
+            
+            // Scroll down to continue with form
+            setTimeout(() => {
+                document.querySelector('.form-step[data-step="2"] h2').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 500);
+        }
+
+        function goBackToAddReport() {
+            prevStep();
+            // Scroll to report selection
+            setTimeout(() => {
+                document.querySelector('.report-options').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        }
+
         function updateProgressLine() {
             const progressLine = document.getElementById('progressLine');
             const width = ((currentStep - 1) / 2) * 100;
             progressLine.style.width = width + '%';
         }
 
+        // ==================== CUSTOM LOCATION TOGGLES ====================
+        document.getElementById('person1_city').addEventListener('change', function() {
+            const customDiv = document.getElementById('person1_custom');
+            if (this.value === 'custom') {
+                customDiv.classList.add('active');
+                document.querySelector('[name="person1_lat"]').required = true;
+                document.querySelector('[name="person1_lon"]').required = true;
+            } else {
+                customDiv.classList.remove('active');
+                document.querySelector('[name="person1_lat"]').required = false;
+                document.querySelector('[name="person1_lon"]').required = false;
+            }
+        });
+
+        document.getElementById('person2_city').addEventListener('change', function() {
+            const customDiv = document.getElementById('person2_custom');
+            if (this.value === 'custom') {
+                customDiv.classList.add('active');
+                document.querySelector('[name="person2_lat"]').required = true;
+                document.querySelector('[name="person2_lon"]').required = true;
+            } else {
+                customDiv.classList.remove('active');
+                document.querySelector('[name="person2_lat"]').required = false;
+                document.querySelector('[name="person2_lon"]').required = false;
+            }
+        });
+
+        // ==================== FORM SUBMISSION ====================
         document.getElementById('compatibilityForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -1060,6 +1352,7 @@
                     currentStep = 1;
                     selectedReports = [];
                     currentPrice = 0;
+                    hasShownCelebration = false;
                     updatePrice();
                     updateProgressLine();
                 } else {
