@@ -365,6 +365,129 @@
         }
 
         /* Responsive */
+        footer p a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer p a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Legal Modal Styles */
+        .legal-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .legal-modal.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .legal-content {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 50px 40px;
+            color: #333;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .legal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5em;
+            cursor: pointer;
+            color: #666;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f0f0f0;
+            transition: all 0.3s;
+            line-height: 1;
+            font-weight: 300;
+        }
+
+        .legal-close:hover {
+            background: #352a39;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .legal-content h1 {
+            color: #352a39;
+            margin-bottom: 15px;
+            font-size: 2.5em;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 15px;
+        }
+
+        .legal-content h2 {
+            color: #352a39;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .legal-content h3 {
+            color: #555;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+
+        .legal-content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .legal-content ul, .legal-content ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .legal-content li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .legal-content strong {
+            color: #352a39;
+            font-weight: 600;
+        }
+
+        .legal-updated {
+            color: #999;
+            font-size: 0.95em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .logo {
                 font-size: 2.5em;
@@ -385,6 +508,27 @@
 
             .report-cards {
                 grid-template-columns: 1fr;
+            }
+
+            .legal-content {
+                margin: 20px;
+                padding: 35px 20px;
+            }
+
+            .legal-content h1 {
+                font-size: 2em;
+            }
+
+            .legal-content h2 {
+                font-size: 1.5em;
+            }
+
+            .legal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 2em;
+                top: 15px;
+                right: 15px;
             }
         }
     </style>
@@ -530,17 +674,214 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Sthiti. All rights reserved.</p>
-        <p>
-            <a href="/cdn-cgi/l/email-protection#394a4c4949564b4d794a4d51504d501756575550575c">Contact Support</a> | 
-            <a href="#privacy">Privacy Policy</a> | 
-            <a href="#terms">Terms of Service</a>
+        <div style="margin-bottom: 15px; font-weight: 600; color: #ffd700; font-size: 1.1em;">
+            BEYOND BINARY TECH PRIVATE LIMITED
+        </div>
+        <p style="margin-bottom: 15px; font-size: 0.95em; color: #ddd;">
+            Providing astrology services since 2025
         </p>
-        <p style="margin-top: 20px; font-size: 0.9em;">
-            ⚠️ Disclaimer: Astrological reports are for entertainment and informational purposes only. 
-            Please consult qualified professionals for important life decisions.
+        <p style="margin-bottom: 15px;">
+            <a href="mailto:support@sthiti.online">Contact Support</a> | 
+            <a href="#" onclick="openLegal('privacy'); return false;">Privacy Policy</a> | 
+            <a href="#" onclick="openLegal('terms'); return false;">Terms of Service</a> | 
+            <a href="#" onclick="openLegal('refund'); return false;">Refund Policy</a>
+        </p>
+        <p style="margin-top: 20px; font-size: 0.9em; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+            ⚠️ <strong>Disclaimer:</strong> Astrological reports provided by Sthiti are for entertainment and informational purposes only. 
+            These reports should not be used as a substitute for professional advice in matters of health, law, finance, or other important life decisions. 
+            Please consult qualified professionals for important decisions.
+        </p>
+        <p style="margin-top: 15px; font-size: 0.85em; color: #999;">
+            &copy; 2025 BEYOND BINARY TECH PRIVATE LIMITED. All rights reserved.
         </p>
     </footer>
+
+    <!-- Legal Modals -->
+    <div id="privacyModal" class="legal-modal">
+        <div class="legal-content">
+            <div class="legal-close" onclick="closeLegal('privacy')">&times;</div>
+            <h1>Privacy Policy</h1>
+            <p class="legal-updated">Last Updated: January 6, 2025</p>
+
+            <h2>1. Introduction</h2>
+            <p>BEYOND BINARY TECH PRIVATE LIMITED ("we," "our," or "Sthiti") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our astrology compatibility report service at sthiti.online.</p>
+
+            <h2>2. Information We Collect</h2>
+            <h3>2.1 Personal Information</h3>
+            <ul>
+                <li><strong>Birth Details:</strong> Date, time, and place of birth for astrological calculations</li>
+                <li><strong>Contact Information:</strong> Email address and phone number (optional)</li>
+                <li><strong>Names:</strong> Full names of both individuals for the compatibility report</li>
+                <li><strong>Payment Information:</strong> Processed securely through Razorpay (we do not store payment card details)</li>
+            </ul>
+
+            <h3>2.2 Automatically Collected Information</h3>
+            <ul>
+                <li>IP address and browser type</li>
+                <li>Device information and operating system</li>
+                <li>Usage data and analytics</li>
+            </ul>
+
+            <h2>3. How We Use Your Information</h2>
+            <p>We use your information to:</p>
+            <ul>
+                <li>Generate personalized astrology compatibility reports</li>
+                <li>Process payments and deliver reports via email</li>
+                <li>Communicate about your order and provide customer support</li>
+                <li>Improve our services and user experience</li>
+                <li>Comply with legal obligations</li>
+            </ul>
+
+            <h2>4. Data Storage and Security</h2>
+            <p>We implement industry-standard security measures to protect your data, including:</p>
+            <ul>
+                <li>Encrypted data transmission (SSL/TLS)</li>
+                <li>Secure servers with limited access</li>
+                <li>Regular security audits</li>
+            </ul>
+
+            <h2>5. Data Sharing</h2>
+            <p>We do not sell your personal information. We may share your data with:</p>
+            <ul>
+                <li><strong>Payment Processors:</strong> Razorpay for secure payment processing</li>
+                <li><strong>AI Services:</strong> OpenAI API for generating report summaries (anonymized data)</li>
+                <li><strong>Legal Compliance:</strong> When required by law</li>
+            </ul>
+
+            <h2>6. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal data</li>
+                <li>Request correction of inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of marketing communications</li>
+            </ul>
+
+            <h2>7. Contact Us</h2>
+            <p>For privacy-related questions:</p>
+            <p><strong>Email:</strong> privacy@sthiti.online<br>
+            <strong>Support:</strong> support@sthiti.online</p>
+        </div>
+    </div>
+
+    <div id="termsModal" class="legal-modal">
+        <div class="legal-content">
+            <div class="legal-close" onclick="closeLegal('terms')">&times;</div>
+            <h1>Terms of Service</h1>
+            <p class="legal-updated">Last Updated: January 6, 2025</p>
+
+            <h2>1. Agreement to Terms</h2>
+            <p>By accessing Sthiti (sthiti.online), operated by BEYOND BINARY TECH PRIVATE LIMITED, you agree to be bound by these Terms of Service.</p>
+
+            <h2>2. Service Description</h2>
+            <p>Sthiti provides personalized astrology compatibility reports based on Vedic astrology principles. Our services include:</p>
+            <ul>
+                <li>Marriage Compatibility Reports (₹399)</li>
+                <li>Relationship Compatibility Reports (₹399)</li>
+                <li>Bundle Package (₹499)</li>
+            </ul>
+
+            <h2>3. User Eligibility</h2>
+            <p>You must be at least 18 years of age to use our services.</p>
+
+            <h2>4. Nature of Astrological Services</h2>
+            <p><strong>Important Disclaimer:</strong> Astrological reports are for entertainment and informational purposes only. Our reports:</p>
+            <ul>
+                <li>Should not replace professional advice (medical, legal, financial, or psychological)</li>
+                <li>Are interpretive and subjective in nature</li>
+                <li>Do not guarantee specific outcomes or predictions</li>
+                <li>Should not be used as the sole basis for important life decisions</li>
+            </ul>
+
+            <h2>5. Payment Terms</h2>
+            <ul>
+                <li>All prices are in Indian Rupees (₹)</li>
+                <li>Payment processed securely through Razorpay</li>
+                <li>Payment must be completed before report generation</li>
+            </ul>
+
+            <h2>6. Report Delivery</h2>
+            <ul>
+                <li>Reports delivered via email in PDF format within 5-10 minutes</li>
+                <li>You are responsible for providing a valid email address</li>
+                <li>Reports can be re-sent upon request within 30 days</li>
+            </ul>
+
+            <h2>7. Limitation of Liability</h2>
+            <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+            <ul>
+                <li>We are not liable for indirect, incidental, or consequential damages</li>
+                <li>Our total liability is limited to the amount you paid</li>
+                <li>We do not guarantee report accuracy or specific outcomes</li>
+            </ul>
+
+            <h2>8. Governing Law</h2>
+            <p>These Terms are governed by the laws of India. Disputes shall be subject to the jurisdiction of courts in Hyderabad, Telangana, India.</p>
+
+            <h2>9. Contact Information</h2>
+            <p><strong>BEYOND BINARY TECH PRIVATE LIMITED</strong><br>
+            Email: legal@sthiti.online<br>
+            Support: support@sthiti.online</p>
+        </div>
+    </div>
+
+    <div id="refundModal" class="legal-modal">
+        <div class="legal-content">
+            <div class="legal-close" onclick="closeLegal('refund')">&times;</div>
+            <h1>Refund Policy</h1>
+            <p class="legal-updated">Last Updated: January 6, 2025</p>
+
+            <h2>1. Overview</h2>
+            <p>At BEYOND BINARY TECH PRIVATE LIMITED (Sthiti), we strive to provide high-quality astrology compatibility reports. This Refund Policy outlines refund conditions.</p>
+
+            <h2>2. Full Refund (100%)</h2>
+            <p>You are eligible for a full refund if:</p>
+            <ul>
+                <li><strong>Non-Delivery:</strong> Report not delivered within 24 hours of payment</li>
+                <li><strong>Payment Error:</strong> Charged multiple times for same order</li>
+                <li><strong>Technical Failure:</strong> Report generation failed due to our technical error</li>
+                <li><strong>Incorrect Report:</strong> Wrong type of report delivered</li>
+            </ul>
+
+            <h2>3. No Refund</h2>
+            <p>Refunds will NOT be provided for:</p>
+            <ul>
+                <li>Incorrect birth details provided by you</li>
+                <li>Disagreement with astrological interpretation</li>
+                <li>Changed mind after receiving report</li>
+                <li>Expected different results</li>
+                <li>More than 7 days since payment</li>
+            </ul>
+
+            <h2>4. Refund Request Process</h2>
+            <ol>
+                <li>Email support@sthiti.online within 7 days</li>
+                <li>Provide order ID, payment reference, and reason</li>
+                <li>Review within 2-3 business days</li>
+                <li>Decision sent via email</li>
+                <li>Approved refunds processed within 7-10 business days</li>
+            </ol>
+
+            <h2>5. Refund Method</h2>
+            <ul>
+                <li>Refunds issued to original payment method</li>
+                <li>Card refunds: 5-10 business days</li>
+                <li>UPI/wallet refunds: 2-3 business days</li>
+            </ul>
+
+            <h2>6. Bundle Package Refunds</h2>
+            <ul>
+                <li>Both reports fail: full refund</li>
+                <li>One report delivers: partial refund (50%)</li>
+            </ul>
+
+            <h2>7. Contact for Refunds</h2>
+            <p><strong>BEYOND BINARY TECH PRIVATE LIMITED</strong><br>
+            Email: refunds@sthiti.online<br>
+            Support: support@sthiti.online<br>
+            Response Time: 24-48 hours</p>
+        </div>
+    </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Generate stars
@@ -565,6 +906,43 @@
             shootingStar.style.animationDelay = (i * 3) + 's';
             starsContainer.appendChild(shootingStar);
         }
+
+        // Legal modal functions
+        function openLegal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLegal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.legal-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.legal-modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
 
         // Handle URL parameters for direct ordering
         window.addEventListener('DOMContentLoaded', () => {
